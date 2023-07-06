@@ -2,35 +2,50 @@ import React from 'react';
 
 class MyComponent extends React.Component {
     state = {
-        name: 'Cuongabc',
-        age: '27'
+        firstName: '',
+        lastName: ''
     }
-    handlerOnChangeName = (event) => {
+
+    handlerChangeFirstName = (event) => {
         this.setState({
-            name: event.target.value
+            firstName: event.target.value
         })
     }
-    handlerClickButton = () => {
-        alert('Click me')
+    handlerChangeLastName = (event) => {
+        this.setState({
+            lastName: event.target.value
+        })
     }
+    handlerOneClick = (e) => {
+        e.preventDefault()
+        console.log('>>>>State:', this.state)
+        alert('click me')
+
+    }
+
     render() {
-
-        let name = 'Cuongnm';
-
         return (
             <>
-                <div className='first'>
-                    <input value={this.state.name} type='text'
-                        onChange={(event) => this.handlerOnChangeName(event)}
+                <form>
+                    <label for="fname">First name:</label>
+                    <input
+                        type='text'
+                        value={this.state.firstName}
+                        onChange={(event) => this.handlerChangeFirstName(event)}
+                    /><br />
+                    <label for="lname">Last name:</label>
+                    <input
+                        type='text'
+                        value={this.state.lastName}
+                        onChange={(event) => this.handlerChangeLastName(event)}
+                    /><br />
+                    <input
+                        type='button'
+                        value="Submit"
+                        onClick={(e) => this.handlerOneClick(e)}
                     />
-                    My Name is {this.state['name']}
-                </div>
-                <div className='2'>
-                    I am {this.state.age}
-                </div>
-                <div className='third'>
-                    <button onClick={() => this.handlerClickButton()}>Click me</button>
-                </div>
+
+                </form>
             </>
 
         )
